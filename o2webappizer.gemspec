@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Patrice Lebel"]
   spec.email         = ["patrice@lebel.com"]
 
-  spec.summary       = "Project Boilerplates Builder used by O2Web"
-  spec.description   = "Project Boilerplates Builder used by O2Web"
+  spec.summary       = "Project Boilerplate Builder used by O2Web"
+  spec.description   = "Project Boilerplate Builder used by O2Web"
   spec.homepage      = "https://github.com/o2web/o2webappizer"
   spec.license       = "MIT"
 
