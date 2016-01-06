@@ -21,9 +21,9 @@ Gem::Specification.new do |spec|
   spec.executables   = ["o2webappizer"]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'bundler', '~> 1.3'
-  spec.add_dependency 'rails', O2webappizer::RAILS_VERSION
+  spec.add_dependency 'rails', "~> #{O2webappizer::RAILS_VERSION}", ">= #{O2webappizer::RAILS_VERSION}.0"
 
-  spec.add_development_dependency "bundler", "~> 1.10"
+  spec.add_runtime_dependency 'bundler', '~> 1.10', '~> 1.3'
+
   spec.add_development_dependency "rake", "~> 10.0"
 end
