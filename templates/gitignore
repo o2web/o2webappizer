@@ -32,11 +32,7 @@
 !/public/images/loading.gif
 /private/*
 
-# Ignore uploads folder
-uploads/*
-cache/pictures/*
-
-#default stuff
+# Default stuff
 .DS_Store
 .sass-cache
 
