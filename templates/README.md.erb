@@ -1,0 +1,29 @@
+# <%= app_name.humanize %>
+
+## Local setup, make sure that these librairies are installed with:
+
+```console
+brew install autoconf gdbm libpng ossp-uuid autoenv gettext libtool pcre readline automake git libyaml redis 
+```
+
+```console
+brew install brew-cask glib mcrypt icu4c sqlite imagemagick mhash ssh-copy-id jpeg unixodbc lftp node
+```
+
+```console
+brew install pkg-config wget freetype libffi openssl postgresql zlib
+```
+
+## Create a PostgresSQL user 'postgres' with 'postgres' password if not already done, then run:
+
+```console
+rake db:create db:migrate db:data:load
+```
+
+or
+
+```console
+rake db:reborn
+```
+
+and then, you're good to go by launching your runner/debugger in Rubymine or by running `rails s` and accessing localhost:3000
