@@ -13,6 +13,6 @@ end
 
 templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
 O2webappizer::AppGenerator.source_root templates_root
-O2webappizer::AppGenerator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
+O2webappizer::AppGenerator.source_paths << templates_root << Rails::Generators::AppGenerator.source_root
 
 O2webappizer::AppGenerator.start
