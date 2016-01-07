@@ -12,6 +12,9 @@ module O2webappizer
     class_option :skip_test_unit, type: :boolean, aliases: "-T", default: true,
       desc: "Skip Test::Unit files"
 
+    class_option :force, type: :boolean, aliases: "-f", default: true,
+      desc: "Overwrite files that already exist"
+
     def finish_template
       invoke :o2webappizer_customization
       super
