@@ -84,7 +84,10 @@ module O2webappizer
       inside 'vendor/assets' do
         copy_file 'javascripts/jquery.lazyload.js'
         copy_file 'javascripts/modernizr.js'
+        directory 'javascripts/rails_admin'
         copy_file 'stylesheets/nprogress-variables.sass'
+        directory 'stylesheets/rails_admin'
+        directory 'stylesheets/rich'
         if options.solidus?
           directory 'javascripts/spree'
           directory 'stylesheets/spree'
