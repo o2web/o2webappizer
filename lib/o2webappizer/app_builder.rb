@@ -4,10 +4,6 @@ module O2webappizer
       template 'README.md'
     end
 
-    def gemfile
-      template 'Gemfile'
-    end
-
     def gitignore
       template '.gitignore'
     end
@@ -98,14 +94,15 @@ module O2webappizer
     end
 
     def leftovers
-      #rake 'railties:install:migrations'
-      #rake 'db:create'
-      #rake 'db:migrate' if options.migrate?
-
       template '.ruby-version'
 
       after_bundle do
         init_git unless options.skip_git?
+        rake 'railties:install:migrations'
+        if options.migrate?
+          rake 'db:create'
+          rake 'db:migrate'
+        end
       end
     end
 
@@ -159,6 +156,7 @@ module O2webappizer
 
     def init_git
       git :init
+      git add: '.'
     end
 
     def configure_env(name, level)
