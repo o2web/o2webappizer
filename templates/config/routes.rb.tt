@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   mount Rich::Engine => 'rich', as: 'rich'
   mount RailsAdmin::Engine => 'admin/dashboard', as: 'rails_admin'
 
+  root to: "cms/pages#show", format: false, defaults: { cms_view_type: 'page', cms_body_class: 'page', locale: I18n.default_locale }
+
 <% if options.solidus? -%>
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.

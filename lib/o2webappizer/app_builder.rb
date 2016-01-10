@@ -22,11 +22,13 @@ module O2webappizer
         keep_file 'controllers/concerns'
         directory 'helpers'
         directory 'mailers'
+        directory 'models'
         keep_file 'models/concerns'
         keep_file 'overrides' if options.solidus?
         empty_directory 'views'
 
         inside 'views' do
+          directory 'cms'
           directory 'layouts'
           directory 'spree' if options.solidus?
         end
