@@ -6,7 +6,7 @@ module O2webappizer
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
       desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
-    class_option :skip_bundle, type: :boolean, aliases: "-B", default: true,
+    class_option :skip_bundle, type: :boolean, aliases: "-B", default: false,
       desc: "Don't run bundle install"
 
     class_option :skip_test_unit, type: :boolean, aliases: "-T", default: true,
@@ -15,21 +15,17 @@ module O2webappizer
     class_option :force, type: :boolean, aliases: "-f", default: true,
       desc: "Overwrite files that already exist"
 
-    def finish_template
-      invoke :o2webappizer_customization
-      super
-    end
+    class_option :solidus, type: :boolean, default: false,
+      desc: "Install Solidus as well"
 
-    def o2webappizer_customization
-      invoke :setup_git
-    end
+    class_option :locales, type: :array, default: ['fr', 'en'],
+      desc: "Available locales (default locale comes first)"
 
-    def setup_git
-      if !options[:skip_git]
-        say 'Initializing git'
-        build :init_git
-      end
-    end
+    class_option :migrate, type: :boolean, default: true,
+      desc: 'Run migrations'
+
+    class_option :ruby_version, type: :string, default: '2.2.3',
+      desc: 'Set Ruby version used'
 
     protected
 

@@ -1,0 +1,18 @@
+<nav class="columns sixteen">
+  <% if current_admin? %>
+    <li><%= cms_link_to_edit_mode %></li>
+    <li><%= link_to "Admin", spree.admin_orders_path, data: { 'no-turbolink' => true } %></li>
+  <% end %>
+  <%= cms_locale_selector %>
+  <ul id="main-nav-bar" class="inline" data-hook>
+    <li></li>
+    <li id="home-link" data-hook><%= link_to Spree.t(:home), spree.root_path %></li>
+    <li id="link-to-cart" data-hook>
+      <noscript>
+        <%= link_to Spree.t(:cart), '/cart' %>
+      </noscript>
+      &nbsp;
+    </li>
+    <script>Spree.fetch_cart()</script>
+  </ul>
+</nav>

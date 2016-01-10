@@ -14,10 +14,14 @@ brew install brew-cask glib mcrypt icu4c sqlite imagemagick mhash ssh-copy-id jp
 brew install pkg-config wget freetype libffi openssl postgresql zlib
 ```
 
-## Create a PostgresSQL user 'postgres' with 'postgres' password if not already done, then run:
+### Install Ruby with Rbenv and Ruby-build (with the git clone way)
+
+### Install Bundler and run an install
+
+### Create a PostgresSQL user 'postgres' with 'postgres' password if not already done, then run:
 
 ```console
-rake db:create db:migrate db:data:load
+rake db:drop db:create db:migrate db:data:load
 ```
 
 or

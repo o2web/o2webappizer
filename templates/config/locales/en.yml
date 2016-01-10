@@ -1,0 +1,7 @@
+en:
+  'yes': "yes"
+  'no': 'no'
+  time:
+    formats:
+      day_and_date: "%A %m/%d/%Y"
+      admin_datetime: "%Y-%m-%d %H:%M:%S"

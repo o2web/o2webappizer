@@ -19,7 +19,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-# gem 'nprogress-rails', github: 'caarlos0/nprogress-rails'
+gem 'nprogress-rails', github: 'caarlos0/nprogress-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -38,20 +38,19 @@ group :development, :test do
   gem 'spring', '~> 1.3.6'
 
   # gem 'web-console', '~> 3.0'
-
-  # Easily find view partials
   gem 'xray-rails'
-
   gem 'quiet_assets'
-
-  # gem 'letter_opener'
-  # gem 'letter_opener_web', '~> 1.2.0'
+  gem 'coffee-rails-source-paths', github: 'Machiaweliczny/coffee-rails-source-paths'
+  gem 'sass-rails-source-maps', github: 'inopinatus/sass-rails-source-maps'
+<% unless options.solidus? -%>
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.2.0'
+<% end -%>
 end
 
 # Scheduling
 gem 'whenever', require: false
 # gem 'que'
-# gem 'threaded'
 
 # Database
 gem 'yaml_db'
@@ -65,16 +64,12 @@ gem 'yaml_db'
 # gem 'friendly_id-globalize', '~> 1.0.0'
 # gem 'redirector'
 
-# JavaScript
-# gem 'js-routes'
-# gem 'i18n-js', '>= 3.0.0.rc11'
-
 # Search
 # gem 'ransack'
 # gem 'textacular', '~> 3.0'
 
 # Views
-# gem 'nestive', '~> 0.5'
+gem 'nestive', '~> 0.5'
 # gem 'local_time'
 
 # Forms
@@ -85,6 +80,22 @@ gem 'yaml_db'
 # gem 'wice_grid', github: 'leikind/wice_grid', branch: 'rails3'
 # gem 'spreadsheet'
 
+# CSS
+gem 'autoprefixer-rails'
+gem 'font-awesome-sass', github: 'schurig/font-awesome-sass', branch: 'patch-1'
+
+# Images
+gem 'lazyload-rails', github: 'jassa/lazyload-rails'
+gem 'browser', github: 'fnando/browser'
+
 # Rails Admin
 gem 'rails_admin_cms'
+gem 'rich', github: 'o2web/rich'
+gem 'rails_admin_jcrop', github: 'o2web/rails_admin_jcrop', branch: 'feature/one_crop_per_page'
 # gem 'rails_admin_history_rollback', github: 'rikkipitt/rails_admin_history_rollback'
+
+<% if options.solidus? -%>
+# Solidus
+gem 'solidus', github: 'o2web/solidus', branch: 'v1.1'
+gem 'solidus_auth_devise'
+<% end -%>
