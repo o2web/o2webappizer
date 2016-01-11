@@ -55,9 +55,7 @@ gem 'whenever', require: false
 # Database
 gem 'yaml_db'
 # gem 'goldiloader'
-# gem 'paper_trail', github: 'airblade/paper_trail'
 # gem 'paranoia', '~> 2.0'
-# gem 'globalize', '~> 5.0.0'
 
 # Routes
 # gem 'friendly_id', '~> 5.1.0'
@@ -93,6 +91,7 @@ gem 'rails_admin_cms', github: 'o2web/rails_admin_cms', branch: 'master'
 gem 'rich', github: 'o2web/rich', branch: 'master'
 gem 'rails_admin', github: 'o2web/rails_admin', branch: 'master'
 gem 'rails_admin_jcrop', github: 'o2web/rails_admin_jcrop', branch: 'feature/one_crop_per_page'
+gem 'rails_admin_globalize_field', github: 'o2web/rails_admin_globalize_field', branch: 'master'
 
 <% if options.solidus? -%>
 # Solidus
