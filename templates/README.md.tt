@@ -31,3 +31,11 @@ rake db:reborn
 ```
 
 and then, you're good to go by launching your runner/debugger in Rubymine or by running `rails s` and accessing localhost:3000
+
+<% if options.solidus? -%>
+## Default Admin User Credentials
+
+admin@example.com
+
+test123
+<% end -%>
