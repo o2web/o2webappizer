@@ -153,11 +153,25 @@ module O2webappizer
           Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
             Rails.configuration.cache_classes ? require(c) : load(c)
           end
+          Dir.glob(File.join(File.dirname(__FILE__), "../lib/**/*_decorator*.rb")) do |c|
+            Rails.configuration.cache_classes ? require(c) : load(c)
+          end
           #{overrides}
         end
 
+        config.time_zone = 'Eastern Time (US & Canada)'
+
         config.i18n.default_locale = :#{options.locales.first}
         config.i18n.available_locales = #{options.locales.map(&:to_sym)}
+
+        # config.active_job.queue_adapter = :que
+        config.active_record.schema_format = :sql
+
+        config.action_view.embed_authenticity_token_in_remote_forms = true
+
+        config.assets.paths << Rails.root.join("app", "assets", "fonts")
+        config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
+        config.assets.precompile += %w( .svg .eot .woff .ttf)
       APP
     end
 
