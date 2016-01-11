@@ -1,0 +1,5 @@
+module ApplicationHelper
+<% if options.solidus? -%>
+  include Spree::BaseHelper
+<% end -%>
+end

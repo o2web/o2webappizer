@@ -16,7 +16,8 @@ module O2webappizer
         keep_file 'assets/images'
         directory 'controllers'
         keep_file 'controllers/concerns'
-        directory 'helpers'
+        copy_file 'helpers/application_helper.rb'
+        copy_file 'helpers/spree/frontend_helper_decorator.rb' if options.solidus?
         directory 'mailers'
         directory 'models'
         keep_file 'models/concerns'
