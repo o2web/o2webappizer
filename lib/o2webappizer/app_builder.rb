@@ -56,14 +56,15 @@ module O2webappizer
           remove_file 'initializers/spree.rb'
           remove_file 'initializers/devise.rb'
         end
-        empty_directory 'locales'
+        directory 'locales'
 
         inside 'locales' do
-          options.locales.each do |locale|
-            copy_file 'routes.en.yml', "routes.#{locale}.yml"
-            gsub_file "routes.#{locale}.yml", /^en/, locale
-            copy_file 'simple_form.en.yml', "simple_form.#{locale}.yml"
-            gsub_file "simple_form.#{locale}.yml", /^en/, locale
+          options.locales.reject{ |l| l == 'en' }.each do |locale|
+            duplicate_locale locale
+            duplicate_locale locale, 'routes'
+            gsub_file "routes.#{locale}.yml", /page: page/, "page: #{locale}/page"
+            gsub_file "routes.#{locale}.yml", /contact: contact/, "contact: #{locale}/contact"
+            duplicate_locale locale, 'simple_form'
           end
         end
       end
@@ -115,6 +116,13 @@ module O2webappizer
     end
 
     private
+
+    def duplicate_locale(locale, name = nil)
+      src_name = name ? "#{name}.en.yml" : "en.yml"
+      dst_name = name ? "#{name}.#{locale}.yml" : "#{locale}.yml"
+      copy_file src_name, dst_name
+      gsub_file dst_name, /^en/, locale
+    end
 
     def configure_application
       overrides = if options.solidus?
