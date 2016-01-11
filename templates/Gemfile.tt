@@ -96,6 +96,6 @@ gem 'rails_admin_jcrop', github: 'o2web/rails_admin_jcrop', branch: 'feature/one
 
 <% if options.solidus? -%>
 # Solidus
-gem 'solidus', github: 'o2web/solidus', branch: 'v1.1'
-gem 'solidus_auth_devise'
+gem 'solidus', github: 'o2web/solidus', branch: 'master'
+gem 'solidus_auth_devise', github: 'solidusio/solidus_auth_devise', branch: 'master'
 <% end -%>
