@@ -98,6 +98,7 @@ gem 'rails_admin_jcrop', github: 'o2web/rails_admin_jcrop', branch: 'feature/one
 # Solidus
 gem 'solidus', github: 'o2web/solidus', branch: 'master'
 gem 'solidus_auth_devise', github: 'solidusio/solidus_auth_devise', branch: 'master'
+gem 'solidus_gateway', github: 'solidusio/solidus_gateway', branch: 'master'
 gem 'solidus_i18n', github: 'o2web/solidus_i18n', branch: 'master'
 gem 'solidus_globalize', github: 'o2web/solidus_globalize', branch: 'master'
 <% end -%>
