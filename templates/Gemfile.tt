@@ -90,9 +90,9 @@ gem 'browser', github: 'fnando/browser'
 
 # Rails Admin
 gem 'rails_admin_cms', github: 'o2web/rails_admin_cms', branch: 'master'
-gem 'rich', github: 'o2web/rich'
+gem 'rich', github: 'o2web/rich', branch: 'master'
+gem 'rails_admin', github: 'o2web/rails_admin', branch: 'master'
 gem 'rails_admin_jcrop', github: 'o2web/rails_admin_jcrop', branch: 'feature/one_crop_per_page'
-# gem 'rails_admin_history_rollback', github: 'rikkipitt/rails_admin_history_rollback'
 
 <% if options.solidus? -%>
 # Solidus
