@@ -24,6 +24,9 @@ module O2webappizer
     class_option :migrate, type: :boolean, default: true,
       desc: 'Run migrations'
 
+    class_option :drop, type: :boolean, default: false,
+      desc: 'Drop current table'
+
     class_option :ruby_version, type: :string, default: '2.2.3',
       desc: 'Set Ruby version used'
 

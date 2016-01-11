@@ -97,11 +97,19 @@ module O2webappizer
       template '.ruby-version'
 
       after_bundle do
-        init_git unless options.skip_git?
         rake 'railties:install:migrations'
         if options.migrate?
+          rake 'db:drop' if options.drop?
           rake 'db:create'
           rake 'db:migrate'
+        end
+        unless options.skip_git?
+          git :init
+          git add: '.'
+          git commit: "-m 'first commit'"
+          git checkout: "-b 'staging'"
+          git checkout: "-b 'vagrant'"
+          git checkout: "-b 'develop'"
         end
       end
     end
@@ -152,11 +160,6 @@ module O2webappizer
 
     def configure_vagrant
       configure_env 'vagrant', 'info'
-    end
-
-    def init_git
-      git :init
-      git add: '.'
     end
 
     def configure_env(name, level)
