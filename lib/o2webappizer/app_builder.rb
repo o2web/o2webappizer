@@ -103,6 +103,14 @@ module O2webappizer
           rake 'db:drop' if options.drop?
           rake 'db:create'
           rake 'db:migrate'
+          if options.solidus? && options.seed?
+            rake_options=[]
+            rake_options << "AUTO_ACCEPT=1" if options.auto_accept?
+            rake_options << "ADMIN_EMAIL=#{options.admin_email}" if options.admin_email.present?
+            rake_options << "ADMIN_PASSWORD=#{options.admin_password}" if options.admin_password.present?
+            rake "db:seed #{rake_options.join(' ')}"
+            rake "db:data:dump"
+          end
         end
         unless options.skip_git?
           git :init
@@ -111,6 +119,9 @@ module O2webappizer
           git checkout: "-b 'staging'"
           git checkout: "-b 'vagrant'"
           git checkout: "-b 'develop'"
+        end
+        if options.solidus? && options.sample?
+          rake 'spree_sample:load' unless Dir["#{destination_root}/public/spree/*"].any?
         end
       end
     end

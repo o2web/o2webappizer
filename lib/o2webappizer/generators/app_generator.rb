@@ -15,7 +15,7 @@ module O2webappizer
     class_option :force, type: :boolean, aliases: "-f", default: true,
       desc: "Overwrite files that already exist"
 
-    class_option :solidus, type: :boolean, default: false,
+    class_option :solidus, type: :boolean, default: true,
       desc: "Install Solidus as well"
 
     class_option :locales, type: :array, default: ['fr', 'en'],
@@ -24,8 +24,23 @@ module O2webappizer
     class_option :migrate, type: :boolean, default: true,
       desc: 'Run migrations'
 
+    class_option :seed, type: :boolean, default: true,
+      desc: 'load seed data (migrations must be run)'
+
+    class_option :sample, type: :boolean, default: true,
+      desc: 'load sample data (migrations must be run)'
+
     class_option :drop, type: :boolean, default: false,
-      desc: 'Drop current table'
+      desc: 'Drop current table before migration'
+
+    class_option :auto_accept, type: :boolean, default: true,
+      desc: 'Auto-accept prompts'
+
+    class_option :admin_email, type: :string,
+      desc: 'Admin email'
+
+    class_option :admin_password, type: :string,
+      desc: 'Admin password'
 
     class_option :ruby_version, type: :string, default: '2.2.3',
       desc: 'Set Ruby version used'
