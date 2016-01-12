@@ -137,7 +137,8 @@ module O2webappizer
     end
 
     def configure_application
-      insert_into_file 'application.rb', 'require "sprockets-derailleur"', after: 'require "sprockets/railtie"\n'
+      insert_into_file 'application.rb', %{require "sprockets-derailleur"\n}, after: %{require "sprockets/railtie"\n}
+
       overrides = if options.solidus?
         <<-OVERRIDES
 
