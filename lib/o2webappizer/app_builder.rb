@@ -53,9 +53,13 @@ module O2webappizer
           configure_vagrant
         end
         directory 'initializers'
-        unless options.solidus?
-          remove_file 'initializers/spree.rb'
-          remove_file 'initializers/devise.rb'
+        directory 'initializers_tt', 'initializers'
+
+        inside 'initializers' do
+          unless options.solidus?
+            remove_file 'spree.rb'
+            remove_file 'devise.rb'
+          end
         end
         directory 'locales'
 
