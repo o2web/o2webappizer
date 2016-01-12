@@ -27,7 +27,18 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## TODO
 
+* Mailers
 * Rspec
+* Capistrano
+* Sunzi (better Nginx config)
+* Vagrant
+* Sprockets image compressor (and gz) for svg, png, jpg
+* Moneybird i18n-workflow
+* Rack-attack + Log rotate
+* Solidus plugins (CMSConnector, EasyPost, Mini-cart, Wishlist, Volume Pricing, Custom Promos, Related Products, Variant Options, Reviews, Auctions)
+* Devise Confirmed At option
+* Redis + Que
+* Gzip yaml_db
 
 ## Contributing
 
