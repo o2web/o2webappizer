@@ -48,6 +48,9 @@ group :development, :test do
 <% end -%>
 end
 
+# Deploy
+gem 'sprockets-derailleur', github: 'bonobos/sprockets-derailleur'
+
 # Scheduling
 gem 'whenever', require: false
 # gem 'que'
