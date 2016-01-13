@@ -78,6 +78,11 @@ module O2webappizer
     def database_yml
     end
 
+    def lib
+      directory 'lib'
+      empty_directory_with_keep_file 'lib/assets'
+    end
+
     def public_directory
       directory 'public'
     end
