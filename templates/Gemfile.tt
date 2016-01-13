@@ -3,10 +3,12 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', github: 'rails/rails', branch: '4-2-stable'
+gem 'rake', '~> 10.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
 gem 'sassc-rails', github: 'Shopify/sassc-rails', branch: 'sprockets-rails-3'
+gem 'sprockets-derailleur', github: 'bonobos/sprockets-derailleur'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -47,9 +49,6 @@ group :development, :test do
   gem 'letter_opener_web', '~> 1.2.0'
 <% end -%>
 end
-
-# Deploy
-gem 'sprockets-derailleur', github: 'bonobos/sprockets-derailleur'
 
 # Scheduling
 gem 'whenever', require: false
