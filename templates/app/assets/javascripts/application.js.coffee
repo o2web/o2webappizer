@@ -16,7 +16,7 @@
 #= require jquery.lazyload
 #= require nprogress
 #= require nprogress-turbolinks
-#= require modernizr
+#= require modernizr.custom
 
 #= require rails_admin_cms/all
 
