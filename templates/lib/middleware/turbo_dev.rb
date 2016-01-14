@@ -1,3 +1,4 @@
+# https://github.com/discourse/discourse/blob/master/lib/middleware/turbo_dev.rb
 module Middleware
 
   # Cheat and bypass Rails in development mode if the client attempts to download a static asset
