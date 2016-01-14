@@ -193,6 +193,8 @@ module O2webappizer
 
       environment(<<-DEV.strip_heredoc.indent(2), env: 'development')
 
+        config.middleware.insert 0, Middleware::TurboDev
+
         config.action_controller.asset_host = 'http://localhost:3000'
         config.action_mailer.asset_host = 'http://localhost:3000'
       DEV
