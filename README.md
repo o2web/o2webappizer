@@ -27,7 +27,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## TODO
 
-* Mailers
 * Rspec
 * Capistrano
 * Sunzi (better Nginx config)
