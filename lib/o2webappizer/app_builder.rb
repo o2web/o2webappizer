@@ -92,7 +92,7 @@ module O2webappizer
 
       inside 'vendor/assets' do
         copy_file 'javascripts/jquery.lazyload.js'
-        copy_file 'javascripts/modernizr.js'
+        copy_file 'javascripts/modernizr.custom.js'
         directory 'javascripts/rails_admin'
         copy_file 'stylesheets/nprogress-variables.sass'
         directory 'stylesheets/rails_admin'
@@ -188,6 +188,9 @@ module O2webappizer
     end
 
     def configure_development
+      insert_into_file 'development.rb', %{require_relative '../../lib/middleware/turbo_dev'\n\n},
+        before: %{Rails.application.configure do}
+
       environment(<<-DEV.strip_heredoc.indent(2), env: 'development')
 
         config.action_controller.asset_host = 'http://localhost:3000'
