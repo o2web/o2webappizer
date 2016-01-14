@@ -195,8 +195,8 @@ module O2webappizer
 
         config.middleware.insert 0, Middleware::TurboDev
 
-        config.action_controller.asset_host = 'http://localhost:3000'
-        config.action_mailer.asset_host = 'http://localhost:3000'
+        config.action_controller.asset_host = '//localhost:3000'
+        config.action_mailer.asset_host = '//localhost:3000'
         config.action_mailer.delivery_method = :letter_opener_web
         config.action_mailer.default_url_options = { :host => "localhost:3000" }
       DEV
@@ -215,11 +215,21 @@ module O2webappizer
     end
 
     def configure_env(name, level)
-      environment(<<-DEV.strip_heredoc.indent(2), env: name)
+      environment(<<-CONFIG.strip_heredoc.indent(2), env: name)
 
-        # config.action_controller.asset_host = 'http://todo.todo'
-        # config.action_mailer.asset_host = 'http://todo.todo'
-      DEV
+        config.action_controller.asset_host = '//todo.todo'
+        config.action_mailer.asset_host = '//todo.todo'
+        config.action_mailer.delivery_method = :smtp
+        config.action_mailer.smtp_settings = {
+          address:              'smtp.mailgun.org',
+          port:                 587,
+          domain:               'todo.mailgun.org',
+          user_name:            'todo',
+          password:             'todo',
+          authentication:       'plain',
+        }
+        config.action_mailer.default_url_options = { :host => 'todo.todo' }
+      CONFIG
       gsub_file "#{name}.rb", /# config.action_dispatch.+NGINX/,
         "config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX"
       gsub_file "#{name}.rb", /config.log_level = :debug/,

@@ -49,9 +49,9 @@ group :development, :test do
   gem 'letter_opener_web', '~> 1.2.0'
 end
 
-group :vagrant, :staging
-gem 'mail_interceptor', group: [:development, :staging]
-
+group :staging, :vagrant do
+  gem 'mail_interceptor'
+end
 
 # Scheduling
 gem 'whenever', require: false
