@@ -1,3 +1,4 @@
+# https://github.com/thoughtbot/suspenders
 require 'rails/generators'
 require 'rails/generators/rails/app/app_generator'
 
