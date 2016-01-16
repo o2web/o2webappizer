@@ -106,6 +106,7 @@ module O2webappizer
 
     def leftovers
       template '.ruby-version'
+      copy_file 'Capfile'
 
       after_bundle do
         rake 'railties:install:migrations'
