@@ -25,19 +25,20 @@ After checking out the repo, run `bin/setup` to install dependencies. You can al
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+## Vagrant
+
+Add `192.168.33.37   app-name.dev` to your `/etc/hosts` file.
+After `vagrant up`, connect with `vagrant ssh` and add your public ssh key `id_rsa.pub` to `~/.ssh/authorized_keys`.
+
 ## TODO
 
-* Rspec
-* Capistrano
-* Sunzi (better Nginx config)
-* Vagrant
-* Sprockets image compressor (and gz) for svg, png, jpg
+* Gzip yaml_db
 * Moneybird i18n-workflow
 * Rack-attack + Log rotate
-* Solidus plugins (CMSConnector, EasyPost, Mini-cart, Wishlist, Volume Pricing, Custom Promos, Related Products, Variant Options, Reviews, Auctions)
 * Devise Confirmed At option
+* Rspec
 * Redis + Que
-* Gzip yaml_db
+* Solidus plugins (CMSConnector, EasyPost, Mini-cart, Wishlist, Volume Pricing, Custom Promos, Related Products, Variant Options, Reviews, Auctions)
 
 ## Contributing
 

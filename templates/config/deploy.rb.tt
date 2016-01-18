@@ -1,0 +1,92 @@
+# config valid only for current version of Capistrano
+lock '3.4.0'
+
+set :repo_url, 'git@git.todo.todo:todo/<%= app_name %>.git' # TODO: NEW_PROJECT
+
+set :application, '<%= app_name %>'
+set :ruby_version, IO.read("#{File.dirname(__FILE__)}/../.ruby-version").strip
+set :admin_name, 'ubuntu'
+set :deployer_name, 'deployer'
+set :deploy_to, "/home/#{fetch(:deployer_name)}/#{fetch(:application)}/#{fetch(:stage)}"
+
+set :rbenv_type, :user
+set :rbenv_ruby, fetch(:ruby_version)
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+
+set :passenger_restart_with_sudo, false
+set :passenger_restart_command, 'rbenv sudo passenger-config restart-app'
+
+# default to %W[system]
+<% if options.solidus? -%>
+set :files_public_dirs, fetch(:files_public_dirs, []).push(*%W[
+  spree
+])
+<% else -%>
+# set :files_public_dirs, fetch(:files_public_dirs, []).push(*%W[
+#   spree
+# ])
+<% end -%>
+# default to []
+# set :files_private_dirs, fetch(:files_private_dirs, []).push(*%W[
+# ])
+
+# set :nginx_workers, 1
+# default to %W[assets system]
+<% if options.solidus? -%>
+set :nginx_assets_dirs, fetch(:nginx_assets_dirs, []).push(*%W[
+  spree
+])
+<% else -%>
+# set :nginx_assets_dirs, fetch(:nginx_assets_dirs, []).push(*%W[
+#   spree
+# ])
+<% end -%>
+# set :nginx_max_body_size, '10m'
+
+set :pty, true
+set :port, 22
+
+set :linked_dirs, fetch(:linked_dirs, []).push(*%W[
+  log
+  tmp/pids
+  tmp/cache
+  tmp/sockets
+  private
+  public/assets
+<% if options.solidus? -%>
+  public/spree
+<% end -%>
+  public/system
+  vendor/bundle
+])
+
+# Default value for :linked_files is []
+# set :linked_files, fetch(:linked_files, []).push(*%W[
+#   config/database.yml
+#   config/secrets.yml
+# ])
+
+# Default value for keep_releases is 5
+# set :keep_releases, 5
+
+set :whenever_identifier, ->{ "#{fetch(:application)}-#{fetch(:stage)}" }
+
+namespace :deploy do
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
+
+  after :deploy, :touch_cron_log do
+    on roles :app do
+      within shared_path do
+        execute :touch, 'log/cron.log'
+      end
+    end
+  end
+end
