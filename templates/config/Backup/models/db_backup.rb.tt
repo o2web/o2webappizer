@@ -1,0 +1,91 @@
+# encoding: utf-8
+
+Model.new(:db_backup, 'Backup for app database') do
+  RAILS_ENV = ENV.fetch('RAILS_ENV')
+  RAILS_ROOT = ENV.fetch('RAILS_ROOT')
+
+  ##
+  # PostgreSQL [Database]
+  #
+  database PostgreSQL do |db|
+    DB = YAML.load_file("#{RAILS_ROOT}/config/database.yml")[RAILS_ENV]
+    # try to get RAILS_ENV variable,
+    # if it is not set, use 'production'
+    # env = ENV.fetch('RAILS_ENV'){'production'}
+    # To dump all databases, set `db.name = :all` (or leave blank)
+    db.name               = DB['database']
+    db.username           = DB['username']
+    db.password           = DB['password']
+    db.host               = DB['host']
+    db.port               = 5432
+    # db.socket             = "/tmp/pg.sock"
+    # When dumping all databases, `skip_tables` and `only_tables` are ignored.
+    # db.skip_tables        = ["skip", "these", "tables"]
+    # db.only_tables        = ["only", "these", "tables"]
+    db.additional_options = ["-xc", "-E=utf8"]
+  end
+
+  ##
+  # Local (Copy) [Storage]
+  #
+  store_with Local do |local|
+    local.path       = "~/backups/<%= app_name %>/#{RAILS_ENV}"
+    local.keep       = 40
+  end
+
+  ##
+  # Gzip [Compressor]
+  #
+  compress_with Gzip
+
+  ##
+  # Archive [Archive]
+  #
+  # Adding a file or directory (including sub-directories):
+  #   archive.add "/path/to/a/file.rb"
+  #   archive.add "/path/to/a/directory/"
+  #
+  # Excluding a file or directory (including sub-directories):
+  #   archive.exclude "/path/to/an/excluded_file.rb"
+  #   archive.exclude "/path/to/an/excluded_directory
+  #
+  # By default, relative paths will be relative to the directory
+  # where `backup perform` is executed, and they will be expanded
+  # to the root of the filesystem when added to the archive.
+  #
+  # If a `root` path is set, relative paths will be relative to the
+  # given `root` path and will not be expanded when added to the archive.
+  #
+  #   archive.root '/path/to/archive/root'
+  #
+  # archive :my_archive do |archive|
+  # Run the `tar` command using `sudo`
+  # archive.use_sudo
+  # archive.add "/path/to/a/file.rb"
+  # archive.add "/path/to/a/folder/"
+  # archive.exclude "/path/to/a/excluded_file.rb"
+  # archive.exclude "/path/to/a/excluded_folder"
+  # end
+
+  ##
+  # Mail [Notifier]
+  #
+  # The default delivery method for Mail Notifiers is 'SMTP'.
+  # See the documentation for other delivery options.
+  #
+  # notify_by Mail do |mail|
+    # mail.on_success           = true
+    # mail.on_warning           = true
+    # mail.on_failure           = true
+    #
+    # mail.from                 = "xxx@o2web.ca"
+    # mail.to                   = "xxx@o2web.ca"
+    # mail.address              = "localhost"
+    # mail.port                 = 1025
+    # mail.domain               = "xxx.xxx.xxx.xxx"
+    # mail.user_name            = "xxx"
+    # mail.password             = "xxx"
+    # mail.authentication       = "plain"
+    # mail.encryption           = :starttls
+  # end
+end
