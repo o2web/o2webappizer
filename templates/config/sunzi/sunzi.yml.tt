@@ -1,0 +1,26 @@
+---
+# Dynamic variables here will be compiled to individual files in compiled/attributes.
+attributes:
+  timezone: America/New_York
+  locales: en_US en_US.UTF-8
+  mysql_root_password: <%= SecureRandom.hex %>
+
+# Remote recipes here will be downloaded to compiled/recipes.
+recipes:
+  # rvm: https://raw.githubusercontent.com/kenn/sunzi-recipes/master/ruby/rvm.sh
+  # dotdeb: https://raw.githubusercontent.com/kenn/sunzi-recipes/master/debian/dotdeb-wheezy.sh
+  # backports: https://raw.githubusercontent.com/kenn/sunzi-recipes/master/debian/backports-wheezy.sh
+  # mongodb-10gen: https://raw.githubusercontent.com/kenn/sunzi-recipes/master/debian/mongodb-10gen.sh
+
+# Files specified here will be copied to compiled/files.
+# files:
+#   - ~/.ssh/id_rsa.pub
+
+# Fine tune how Sunzi should work.
+preferences:
+  # Erase the generated folder on the server after deploy.
+  erase_remote_folder: false
+
+  # Skip retrieving remote recipes when local copies already exist. This setting helps
+  # iterative deploy testing considerably faster, when you have a lot of remote recipes.
+  cache_remote_recipes: false
