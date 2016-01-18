@@ -36,12 +36,19 @@ module O2webappizer
       empty_directory 'config'
 
       inside 'config' do
-        template 'routes.rb'
-        template 'application.rb'
+        directory 'Backup'
+        directory 'deploy'
+        directory 'sunzi'
+        template  'deploy.rb'
+        copy_file 'nginx.app.conf.erb'
+        copy_file 'nginx.conf.erb'
+
+        template  'routes.rb'
+        template  'application.rb'
         configure_application
-        template 'database.yml'
-        template 'environment.rb'
-        template 'secrets.yml'
+        template  'database.yml'
+        template  'environment.rb'
+        template  'secrets.yml'
         directory 'environments'
 
         inside 'environments' do
@@ -107,6 +114,8 @@ module O2webappizer
     def leftovers
       template '.ruby-version'
       copy_file 'Capfile'
+      copy_file 'schedule.rb'
+      template  'Vagrantfile'
 
       after_bundle do
         rake 'railties:install:migrations'
