@@ -85,6 +85,16 @@ module O2webappizer
     def database_yml
     end
 
+    def db
+      empty_directory 'db'
+
+      inside 'db' do
+        copy_file 'migrate/001_add_mail_interceptors_to_settings.rb',
+          "migrate/#{2.minutes.from_now.strftime('%Y%m%d%H%I%M')}_add_mail_interceptors_to_settings.rb"
+        template  'seeds.rb'
+      end
+    end
+
     def lib
       directory 'lib'
       empty_directory_with_keep_file 'lib/assets'
