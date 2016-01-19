@@ -155,10 +155,15 @@ module O2webappizer
     def db_directory
       template  'db/seeds.rb'
       rake 'railties:install:migrations'
-      Dir['db/migrate/*.rb'].sort.last =~ /(\d{14})_/
-      next_timestamp = $1.to_i + 1
       copy_file 'db/migrate/001_add_mail_interceptors_to_settings.rb',
         "db/migrate/#{next_timestamp}_add_mail_interceptors_to_settings.rb"
+    end
+
+    def next_timestamp
+      return @next_timestamp + 1 if @next_timestamp
+
+      Dir['db/migrate/*.rb'].sort.last =~ /(\d{14})_/
+      @next_timestamp = $1.to_i + 1
     end
 
     def duplicate_locale(locale, name = nil)
