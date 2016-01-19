@@ -86,13 +86,6 @@ module O2webappizer
     end
 
     def db
-      empty_directory 'db'
-
-      inside 'db' do
-        copy_file 'migrate/001_add_mail_interceptors_to_settings.rb',
-          "migrate/#{2.minutes.from_now.strftime('%Y%m%d%H%I%M')}_add_mail_interceptors_to_settings.rb"
-        template  'seeds.rb'
-      end
     end
 
     def lib
@@ -128,7 +121,8 @@ module O2webappizer
       template  'Vagrantfile'
 
       after_bundle do
-        rake 'railties:install:migrations'
+        db_directory
+
         if options.migrate?
           rake 'db:drop' if options.drop?
           rake 'db:create'
@@ -157,6 +151,15 @@ module O2webappizer
     end
 
     private
+
+    def db_directory
+      template  'db/seeds.rb'
+      rake 'railties:install:migrations'
+      Dir['db/migrate/*.rb'].sort.last =~ /(\d{14})_/
+      next_timestamp = $1.to_i + 1
+      copy_file 'db/migrate/001_add_mail_interceptors_to_settings.rb',
+        "db/migrate/#{next_timestamp}_add_mail_interceptors_to_settings.rb"
+    end
 
     def duplicate_locale(locale, name = nil)
       src_name = name ? "#{name}.en.yml" : "en.yml"
