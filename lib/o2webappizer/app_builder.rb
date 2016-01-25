@@ -232,6 +232,8 @@ module O2webappizer
 
     def configure_production
       configure_env 'production', 'error'
+      gsub_file 'production.rb', 'config.assets.js_compressor = :uglifier',
+        'config.assets.js_compressor = Uglifier.new(copyright: false)'
     end
 
     def configure_staging
