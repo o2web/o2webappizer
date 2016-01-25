@@ -41,7 +41,7 @@ group :development, :test do
   gem 'spring', '~> 1.3.6'
 
   # gem 'web-console', '~> 3.0'
-  gem 'xray-rails', github: 'mattbrictson/xray-rails', branch: 'sprockets-rails-3'
+  gem 'xray-rails', github: 'brentd/xray-rails'
   gem 'quiet_assets'
   gem 'coffee-rails-source-paths', github: 'Machiaweliczny/coffee-rails-source-paths'
   gem 'sass-rails-source-maps', github: 'inopinatus/sass-rails-source-maps'
