@@ -17,31 +17,20 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :passenger_restart_with_sudo, false
 set :passenger_restart_command, 'rbenv sudo passenger-config restart-app'
 
-# default to %W[system]
 <% if options.solidus? -%>
 set :files_public_dirs, fetch(:files_public_dirs, []).push(*%W[
   spree
 ])
 <% else -%>
 # set :files_public_dirs, fetch(:files_public_dirs, []).push(*%W[
-#   spree
 # ])
 <% end -%>
-# default to []
 # set :files_private_dirs, fetch(:files_private_dirs, []).push(*%W[
 # ])
 
 # set :nginx_workers, 1
-# default to %W[assets system]
-<% if options.solidus? -%>
-set :nginx_assets_dirs, fetch(:nginx_assets_dirs, []).push(*%W[
-  spree
-])
-<% else -%>
 # set :nginx_assets_dirs, fetch(:nginx_assets_dirs, []).push(*%W[
-#   spree
 # ])
-<% end -%>
 # set :nginx_max_body_size, '10m'
 
 set :pty, true
@@ -79,14 +68,6 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
-    end
-  end
-
-  after :deploy, :touch_cron_log do
-    on roles :app do
-      within shared_path do
-        execute :touch, 'log/cron.log'
-      end
     end
   end
 end

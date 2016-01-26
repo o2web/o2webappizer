@@ -11,7 +11,7 @@ set :admin_name, 'vagrant'
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-set :server, "#{fetch(:application).dasherize}.dev"
+set :server, "#{fetch(:application).gsub('_', '-')}.dev"
 server fetch(:server), user: fetch(:deployer_name), roles: %w[app web db]
 
 # role-based syntax
