@@ -3,6 +3,11 @@
 ## Local setup, make sure that these librairies are installed with:
 
 ```console
+brew tap homebrew/dupes
+brew tap homebrew/versions
+```
+
+```console
 brew install autoconf gdbm libpng ossp-uuid autoenv gettext libtool pcre readline automake git libyaml redis 
 ```
 
