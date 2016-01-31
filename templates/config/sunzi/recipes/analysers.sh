@@ -6,6 +6,9 @@ if sunzi.to_be_done "install analysers"; then
 
   sunzi.install "goaccess"
   sunzi.install "iotop"
+  sunzi.install "iftop"
+  sunzi.install "ifstat"
+  sunzi.install "nethogs"
   sunzi.install "sysstat"
 
   sed -i 's/ENABLED="false"/ENABLED="true"/' /etc/default/sysstat
