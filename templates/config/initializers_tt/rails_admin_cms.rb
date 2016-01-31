@@ -14,4 +14,9 @@ RailsAdminCMS.config do |config|
 
   # Defines if Forms defined admin side need their body to be editable
   # config.with_email_body = false
+
+  # Defines iframe permissions: same host, different host or all
+  # config.allow_iframe_from = 'SAMEORIGIN'
+  # config.allow_iframe_from = 'ALLOW-FROM https://www.google.com'
+  # config.allow_iframe_from = 'ALLOWALL'
 end
