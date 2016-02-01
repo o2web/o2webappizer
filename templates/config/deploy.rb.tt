@@ -18,27 +18,27 @@ set :passenger_restart_with_sudo, false
 set :passenger_restart_command, 'rbenv sudo passenger-config restart-app'
 
 # default to ['system']
-set :files_public_dirs, fetch(:files_public_dirs).push(*%W[
+set :files_public_dirs, fetch(:files_public_dirs, []).push(*%W[
 <% if options.solidus? -%>
   spree
 <% end -%>
 ])
 # default to []
-set :files_private_dirs, fetch(:files_private_dirs).push(*%W[
+set :files_private_dirs, fetch(:files_private_dirs, []).push(*%W[
 ])
 
 set :nginx_max_body_size, '10m'
 # default to ['system', 'images']
-set :nginx_public_dirs, fetch(:nginx_public_dirs).push(*%W[
+set :nginx_public_dirs, fetch(:nginx_public_dirs, []).push(*%W[
 <% if options.solidus? -%>
   spree
 <% end -%>
 ])
 # default to ['404.html', '422.html', '500.html', 'favicon.ico']
-set :nginx_public_files, fetch(:nginx_public_files).push(*%W[
+set :nginx_public_files, fetch(:nginx_public_files, []).push(*%W[
 ])
 # default to {}
-set :nginx_redirects, fetch(:nginx_redirects).merge({
+set :nginx_redirects, fetch(:nginx_redirects, {}).merge({
 })
 
 set :pty, true
