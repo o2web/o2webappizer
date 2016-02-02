@@ -58,7 +58,7 @@ gem 'whenever', require: false
 # gem 'que'
 
 # Database
-gem 'yaml_db'
+gem 'yaml_db', github: 'o2web/yaml_db'
 # gem 'goldiloader'
 # gem 'paranoia', '~> 2.0'
 
