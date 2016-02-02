@@ -223,8 +223,8 @@ module O2webappizer
 
         config.middleware.insert 0, Middleware::TurboDev
 
-        config.action_controller.asset_host = '//localhost:3000'
-        config.action_mailer.asset_host = '//localhost:3000'
+        config.action_controller.asset_host = 'http://localhost:3000'
+        config.action_mailer.asset_host = 'http://localhost:3000'
         config.action_mailer.delivery_method = :letter_opener_web
         config.action_mailer.default_url_options = { :host => "localhost:3000" }
       DEV
@@ -247,8 +247,8 @@ module O2webappizer
     def configure_env(name, level)
       environment(<<-CONFIG.strip_heredoc.indent(2), env: name)
 
-        config.action_controller.asset_host = '//todo.todo'
-        config.action_mailer.asset_host = '//todo.todo'
+        config.action_controller.asset_host = 'http://todo.todo'
+        config.action_mailer.asset_host = 'http://todo.todo'
         config.action_mailer.delivery_method = :smtp
         config.action_mailer.smtp_settings = {
           address:              'smtp.mailgun.org',
