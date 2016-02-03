@@ -6,7 +6,11 @@ if (Rails.env.staging? || Rails.env.vagrant?)
           def self.flatten
             Class.new do
               def self.uniq
-                Setting[:mail_interceptors].split(/[\s,;]/).reject(&:blank?)
+                if Setting[:mail_interceptors]
+                  Setting[:mail_interceptors].split(/[\s,;]/).reject(&:blank?)
+                else
+                  []
+                end
               end
             end
           end
