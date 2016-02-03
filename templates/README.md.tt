@@ -1,5 +1,11 @@
 # <%= app_name.humanize %>
 
+## Make sure that Brew is up to date before installing dependencies
+
+```console
+brew update
+```
+
 ## Local setup, make sure that these librairies are installed with:
 
 ```console
