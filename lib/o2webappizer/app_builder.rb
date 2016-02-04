@@ -38,20 +38,8 @@ module O2webappizer
       inside 'config' do
         directory 'Backup'
         directory 'deploy'
-        directory 'sunzi'
-        template  'deploy.rb'
-        copy_file 'nginx.app.conf.erb'
-        copy_file 'nginx.conf.erb'
-
-        template  'routes.rb'
-        template  'application.rb'
-        configure_application
-        template  'database.yml'
-        template  'environment.rb'
-        template  'secrets.yml'
         directory 'environments'
-
-        inside 'environments' do
+        inside    'environments' do
           configure_development
           configure_production
           template 'production.rb', 'staging.rb'
@@ -61,16 +49,14 @@ module O2webappizer
         end
         directory 'initializers'
         directory 'initializers_tt', 'initializers'
-
-        inside 'initializers' do
+        inside    'initializers' do
           unless options.solidus?
             remove_file 'spree.rb'
             remove_file 'devise.rb'
           end
         end
         directory 'locales'
-
-        inside 'locales' do
+        inside    'locales' do
           options.locales.reject{ |l| l == 'en' }.each do |locale|
             duplicate_locale locale
             duplicate_locale locale, 'routes'
@@ -79,6 +65,18 @@ module O2webappizer
             duplicate_locale locale, 'simple_form'
           end
         end
+        directory 'sunzi'
+        template  'application.rb'
+        configure_application
+        template  'database.yml'
+        template  'deploy.rb'
+        template  'environment.rb'
+        copy_file 'monitrc.erb'
+        copy_file 'nginx.app.conf.erb'
+        copy_file 'nginx.conf.erb'
+        template  'routes.rb'
+        copy_file 'schedule.rb'
+        template  'secrets.yml'
       end
     end
 
@@ -117,7 +115,6 @@ module O2webappizer
     def leftovers
       template '.ruby-version'
       copy_file 'Capfile'
-      copy_file 'schedule.rb'
       template  'Vagrantfile'
 
       after_bundle do
