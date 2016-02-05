@@ -29,6 +29,12 @@ brew install pkg-config wget freetype libffi openssl postgresql zlib
 
 ### Install Bundler and run an install
 
+If you have problems with the install of the libv8 library, run the fallowing command :
+
+```console
+gem install libv8 -v '3.x.x.x' -- --with-system-v8
+```
+
 ### Create a PostgresSQL user 'postgres' with 'postgres' password if not already done, then run:
 
 ```console
